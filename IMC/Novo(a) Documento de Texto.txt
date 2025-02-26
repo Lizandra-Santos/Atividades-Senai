@@ -1,0 +1,35 @@
+/*
+Nome do Arquivo: Tabela IMC
+autor: Lizandra dos Santos Ferreira
+Data:26/02/2025
+Descrição: calcular e indicar se o peso esta acima do normal ou nao
+*/
+float peso = 77;
+float altura =1.57;
+float resultado =0;
+
+void setup()
+{
+  Serial.begin(9600);
+ resultado = pow(altura,2);
+  resultado = peso / resultado;
+  Serial.println("Seu IMC eh ");
+  Serial.println(resultado);
+  if (resultado >= 0 && resultado <=19.1){
+  Serial.println("Ve se come mais.");
+  }else if (resultado >= 19.2 && resultado <=25.8){
+  Serial.println("perfeito");
+  }else if(resultado >=25.8 && resultado <=27.3){
+    Serial.println("um pouco acima");
+  }else if (resultado >=27.4 && resultado <=32.3){
+  Serial.println("obesidade classe1");
+  }else if (resultado >= 35.0)
+    Serial.println("obesidade classe2");
+   
+   
+
+}
+void loop()
+{
+  
+}
