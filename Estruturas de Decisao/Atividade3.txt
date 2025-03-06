@@ -1,0 +1,26 @@
+/*
+Nome do Arquivo: Estruturas de Desicao
+autor: Lizandra dos Santos Ferreira
+Data:27/02/2025
+Descrição: Atividades
+*/
+#define pinLedAmarelo 13
+int numeroA =2;
+int numeroB = 2;
+int resultado= 0;
+  void setup()
+{
+  pinMode(pinLedAmarelo, OUTPUT);
+    
+    Serial.begin(9600);
+  resultado = numeroB % numeroA;
+    if(resultado == 0){
+      digitalWrite(pinLedAmarelo, HIGH);
+    }
+   
+}
+
+void loop()
+{
+  
+}

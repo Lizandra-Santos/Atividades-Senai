@@ -1,0 +1,23 @@
+/*
+Nome do Arquivo: Tabela IMC
+autor: Lizandra dos Santos Ferreira
+Data:27/02/2025
+Descrição: Atividades
+*/
+#define pinLedVermelho 13
+
+void setup()
+{
+  pinMode(pinLedVermelho, OUTPUT);
+  
+  Serial.begin(9600); //atividade2
+  int bateria = 14;
+  if (bateria <= 20){
+  digitalWrite(pinLedVermelho, HIGH);
+  }
+}
+
+void loop()
+{
+  
+}

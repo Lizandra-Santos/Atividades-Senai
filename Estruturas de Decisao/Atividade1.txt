@@ -1,0 +1,23 @@
+/*
+Nome do Arquivo: Estruturas de Desicao
+autor: Lizandra dos Santos Ferreira
+Data:27/02/2025
+Descrição: Atividades
+*/
+#define pinLedVerde 13
+void setup()
+{
+  pinMode(pinLedVerde, OUTPUT);
+  
+  Serial.begin(9600); //atividade1
+  int temperatura = 40;
+  if (temperatura >=30){
+  digitalWrite(pinLedVerde, HIGH);
+  }
+ 
+}
+
+void loop()
+{
+  
+}
