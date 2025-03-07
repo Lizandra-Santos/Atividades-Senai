@@ -1,0 +1,34 @@
+/*
+Nome do Arquivo: ATIVIDADE31
+autor: Lizandra dos Santos Ferreira
+Data:07/03/2025
+Descrição: fazer o led piscar 
+*/
+#define pinLedLaranja 13
+bool estadoLed =0;
+unsigned long tempoInicial =0;
+
+void setup()
+{
+ pinMode(pinLedLaranja,OUTPUT);
+}
+
+void loop()
+{
+  unsigned long tempoAtual = millis();
+  if (tempoAtual-tempoInicial>= 2 * 1000){
+   //sim 
+    if(estadoLed)
+    {
+    digitalWrite(pinLedLaranja, LOW);
+      estadoLed=0;
+    }
+    else
+    {
+    digitalWrite(pinLedLaranja,HIGH);
+      estadoLed=1;
+    }
+    tempoInicial=tempoAtual;
+  }
+  
+}
