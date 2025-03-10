@@ -1,0 +1,61 @@
+/*
+Nome do Arquivo: ATIVIDADE32
+autor: Lizandra dos Santos Ferreira
+Data:10/03/2025
+Descrição: fazer um semaforo funcionar sem usar delay
+*/
+#define pinLedVermelho 13
+#define pinLedAmarelo 12
+#define pinLedVerde 11
+
+#define tempoVermelho 4000
+#define tempoVerde 3000
+#define tempoAmarelo 2000
+
+unsigned long tempoInicial = 0;
+char faseSemaforo = 0;
+
+void setup()
+{
+  pinMode(pinLedVermelho, OUTPUT);
+  pinMode(pinLedVerde, OUTPUT);
+  pinMode(pinLedAmarelo, OUTPUT);
+  
+}
+void loop()
+{
+  unsigned long tempoAtual = millis();
+  if(faseSemaforo==0)
+  {
+  	digitalWrite(pinLedVermelho, HIGH);
+  	digitalWrite(pinLedAmarelo, LOW);
+  	digitalWrite(pinLedVerde, LOW);
+  	if(tempoAtual - tempoInicial >= tempoVermelho)
+  	{
+   		faseSemaforo= 1;
+    	tempoInicial = tempoAtual;
+  	}
+  }
+  else if(faseSemaforo == 1)
+  {
+  	digitalWrite(pinLedAmarelo, LOW);
+   	digitalWrite(pinLedVermelho,LOW);
+    digitalWrite(pinLedVerde, HIGH);
+   
+    if(tempoAtual - tempoInicial >= tempoVerde)
+  	{
+    	faseSemaforo = 2;
+    	tempoInicial = tempoAtual;
+    }
+  }
+  else if(faseSemaforo == 2)
+  {
+    digitalWrite(pinLedAmarelo, HIGH);
+   	digitalWrite(pinLedVermelho,LOW);
+    digitalWrite(pinLedVerde, LOW);
+   	if(tempoAtual-tempoInicial>=tempoAmarelo)
+   	{
+   		faseSemaforo=0;
+  		tempoInicial =tempoAtual;
+   	}
+    
