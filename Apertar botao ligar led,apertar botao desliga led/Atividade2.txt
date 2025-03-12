@@ -8,7 +8,7 @@ apertar no botao de novo para desligar o led
 */
 #define pinBotao 13
 #define pinLedVermelho 2
-#define tempoLedVermelho= 5000
+
 int contagem =0;
 bool estadoAnteriorBotao=0;
 void setup()
@@ -20,23 +20,14 @@ void setup()
 
 void loop()
 {
-  unsigned long tempoAtual= millis();
+  
   bool estadoAtualBotao = digitalRead(pinBotao);
-  
-  static unsigned long tempoAnterior=0;
     static bool estadoLed=0;
-  
-  if(estadoAtualBotao==1)
+  if(estadoAtualBotao ==1 && estadoAnteriorBotao==0)
   {
-    
-   if(tempoAtual - tempoAnterior >=100)
-     {
-    
-      estadoLed =!estadoLed;
-      digitalWrite(pinLedVermelho, estadoLed);
-      tempoAnterior = tempoAtual;
-    
-   }
-     }
+  estadoLed=!estadoLed;
+    digitalWrite(pinLedVermelho,estadoLed);
+  }
+  
  estadoAnteriorBotao=estadoAtualBotao;
 }
