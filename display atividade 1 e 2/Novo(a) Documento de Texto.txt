@@ -1,0 +1,44 @@
+/*
+Nome do Arquivo: ATIVIDADE37
+autor: Lizandra dos Santos Ferreira
+Data:14/03/2025
+atividade:3
+Descrição: ligar e desligar o led enquanto mostra no 
+display o estado dele
+*/
+#include <LiquidCrystal_I2C.h>
+#define pinLed 13
+LiquidCrystal_I2C lcd(0x27,16,2);
+#define pinBotao 2
+
+void setup()
+{
+  lcd.init();
+  lcd.backlight();
+  pinMode(2,INPUT);
+  pinMode(pinLed, OUTPUT);
+  lcd.print("Led desligado   ");
+  
+}
+void loop()
+{
+  unsigned long tempoInicial = millis();
+  bool estadoAnteriorBotao = 0;
+  bool estadoAtualBotao=digitalRead(pinBotao);
+  static bool estadoLed =0;
+  if(estadoAtualBotao==1 && estadoAnteriorBotao==0)
+  {
+  estadoLed= !estadoLed;
+    digitalWrite(pinLed,estadoLed);
+    lcd.setCursor(0,0);
+    lcd.print("Led Ligado      ");
+    if(estadoAtualBotao==1 && estadoAnteriorBotao==0 && estadoLed==0)
+    lcd.setCursor(0,0);
+    lcd.print("Led desligado   ");
+    {
+    
+    }
+  }
+estadoAnteriorBotao=estadoAtualBotao;
+
+}

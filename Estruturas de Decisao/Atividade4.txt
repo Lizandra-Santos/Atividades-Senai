@@ -1,0 +1,21 @@
+/*
+Nome do Arquivo: Estruturas de Desicao
+autor: Lizandra dos Santos Ferreira
+Data:27/02/2025
+Descrição: Atividades
+*/
+int numero= 3;
+void setup()
+{
+  Serial.begin(9600); //atividade4
+  if ( numero <= 0){
+  Serial.println("negativo");
+  }else if(numero >= 0){
+  Serial.println("positivo");
+  }
+}
+
+void loop()
+{
+  
+}

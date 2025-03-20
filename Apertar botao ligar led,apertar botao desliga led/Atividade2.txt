@@ -3,13 +3,11 @@ Nome do Arquivo: ATIVIDADE34
 autor: Lizandra dos Santos Ferreira
 Data:11/03/2025
 atividade:2
-Descrição: apertar o botao e fazer o led desligar e logo apos disso
+Descrição: apertar o botao e fazer o led ligar e logo apos disso
 apertar no botao de novo para desligar o led
 */
 #define pinBotao 13
 #define pinLedVermelho 2
-
-int contagem =0;
 bool estadoAnteriorBotao=0;
 void setup()
 {

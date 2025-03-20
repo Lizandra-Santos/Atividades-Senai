@@ -1,0 +1,30 @@
+/*
+Nome do Arquivo: Estruturas de Desicao
+autor: Lizandra dos Santos Ferreira
+Data:27/02/2025
+Descrição: Atividade8  
+  */
+ int numeroA =7;
+ int numeroB =6;
+ int numeroC =9;
+ int numeroD =3;
+  int resultado= 0;
+
+void setup()
+{
+  Serial.begin(9600);
+  resultado = numeroA + numeroB + numeroC + numeroD;
+  resultado = resultado / 4;
+  if (resultado >=7){
+    Serial.println("Aprovado");
+  }else if(resultado >= 5 && resultado <=7){
+    Serial.println("Recuperacao");
+  }else if (resultado <5){
+  Serial.println("Reprovado");
+  }
+}
+
+void loop()
+{
+  
+}

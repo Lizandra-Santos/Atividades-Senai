@@ -1,0 +1,47 @@
+/*
+Nome do Arquivo: ATIVIDADE3
+autor: Lizandra dos Santos Ferreira
+Data:19/03/2025
+Descrição: aparecer a seta indicando no display
+*/
+#include <LiquidCrystal_I2C.h>
+#define botao1 0
+#define botao2 145 
+#define botao3 329  
+#define botao4 505  
+#define botao5 741
+#define valorinicial 1023
+LiquidCrystal_I2C lcd(0x27,16,2);
+
+  
+void setup()
+{
+  lcd.init();
+  lcd.backlight();
+  Serial.begin(9600);
+  pinMode(pinLedA,OUTPUT);
+  pinMode(pinLedB,OUTPUT);
+}
+
+void loop()
+{
+  int valor= analogRead(A0);
+  lcd.setCursor(0,0);
+  Serial.println(valor);
+  
+  if(valor >= botao1 * 0.9 && valor <= botao1 * 1.1)
+  {
+    lcd.setCursor(0,1); 
+    lcd.print(" Led off ");
+    lcd.setCursor(0,0);
+    lcd.print(">Led on     ");
+       
+  }
+  else if(valor >= botao2 * 0.9 && valor <= botao2 * 1.1)
+  {
+    lcd.setCursor(0,0);
+    lcd.print(" Led off  ");
+  lcd.setCursor(0,1);  
+  lcd.print(">Led on              ");
+ 
+  }

@@ -1,0 +1,29 @@
+/*
+Nome do Arquivo: Estruturas de Desicao
+autor: Lizandra dos Santos Ferreira
+Data:27/02/2025
+Descrição: Atividade5 
+*/
+int salario= 930;
+ int porcentagem= 10;
+ int porcem= 100;
+  int resultado= 0;
+void setup()
+{
+  Serial.begin(9600);
+ if (salario < 1000){
+  resultado= salario / porcem;
+    resultado = resultado * porcentagem; 
+    resultado= resultado + salario;
+    Serial.println("Nome: Robson");
+   Serial.println("cargo: Pedreiro");
+   Serial.println("seu salario eh: ");
+   Serial.println(resultado);
+ }else if (Serial.println("voce ja tem o suficiente")){
+ }
+}
+
+void loop()
+{
+  
+}

@@ -1,0 +1,40 @@
+/*
+Nome do Arquivo: ATIVIDADE36
+autor: Lizandra dos Santos Ferreira
+Data:13/03/2025
+atividade:2
+Descrição: fazer o display aparecer numeros.
+*/
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27,16,2);
+
+void setup()
+{
+  lcd.init();
+  lcd.backlight();
+    pinMode(2,INPUT);
+}
+void loop()
+{
+  bool leituraBotao = digitalRead(2);
+  static bool leituraAnteriorBotao = 0;
+  static int contagem =0;
+  static bool somaSubtracao =0;
+  
+  if(leituraBotao== 1 && leituraAnteriorBotao==0)
+  {
+    if(somaSubtracao==0)
+    {
+    contagem++;
+      if(contagem==5) somaSubtracao =1;
+    }
+    else
+    {
+      contagem--;
+      if(contagem==1) somaSubtracao =0;
+  }
+    lcd.print(contagem);
+  }
+  leituraAnteriorBotao=leituraBotao;
+}

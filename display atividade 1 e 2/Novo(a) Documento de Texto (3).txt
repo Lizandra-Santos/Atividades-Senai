@@ -1,0 +1,62 @@
+/*
+Nome do Arquivo: ATIVIDADE32
+autor: Lizandra dos Santos Ferreira
+Data:10/03/2025
+Descrição: apertar o botao e aparecer no delay
+*/
+#include <LiquidCrystal_I2C.h>
+#define botao1 0
+#define botao2 145 
+#define botao3 329  
+#define botao4 505  
+#define botao5 741
+#define valorinicial 1023
+LiquidCrystal_I2C lcd(0x27,16,2);
+
+  
+void setup()
+{
+  lcd.init();
+  lcd.backlight();
+ Serial.begin(9600);
+ 
+}
+
+void loop()
+{
+  int valor= analogRead(A0);
+  Serial.println(analogRead(A0));
+  lcd.setCursor(0,0);
+  Serial.println(valor);
+  if(valor==1023)
+  {
+     lcd.setCursor(0,0);
+    lcd.print("0 botao apertado");
+  }
+  else if(valor==botao1)
+  {
+    lcd.setCursor(0,0);
+    lcd.println("botao1 apertado ");   
+  }
+  else if(valor >= botao2 * 0.9 && valor <= botao2 * 1.1)
+  {
+  lcd.setCursor(0,0);  
+  lcd.println("botao2 apertado ");
+  }
+  else if(valor >= botao3 * 0.9 &&valor  <= botao3 * 1.1)
+  {
+   lcd.setCursor(0,0); 
+  lcd.println("botao3 apertado ");
+  }
+  else if(valor >= botao4 * 0.9 && valor <= botao4 * 1.1)
+  {
+    lcd.setCursor(0,0);
+  lcd.println("botao4 apertado ");
+  }
+  else if(valor >= botao5 * 0.9 && valor <= botao5 * 1.1)
+  {
+  lcd.setCursor(0,0);
+    lcd.println("botao5 apertado ");
+  }
+  
+}

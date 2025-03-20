@@ -1,0 +1,94 @@
+/*
+Nome do Arquivo: ATIVIDADE39
+autor: Lizandra dos Santos Ferreira
+Data:20/03/2025
+Descrição: apertar o botao,mudar a seta,apertar outro botao
+para ligar o led onde a seta esta apontando no delay
+*/
+#include <LiquidCrystal_I2C.h>
+#define botao1 0
+#define botao2 145 
+#define botao3 329  
+#define botao4 505  
+#define botao5 741
+#define pinLedA 9
+#define pinLedB 8
+#define valorinicial 1023
+LiquidCrystal_I2C lcd(0x27,16,2);
+
+bool posicaoSetinha = 0;
+  
+void setup()
+{
+  Serial.begin(9600);
+  
+  pinMode(pinLedA,OUTPUT);
+  pinMode(pinLedB,OUTPUT);
+  
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0,0);
+  lcd.print(">Led A OFF  ");
+  lcd.setCursor(0,1);  
+  lcd.print(" Led B OFF   "); 
+}
+
+void loop()
+{
+  int valor= analogRead(A0);
+  lcd.setCursor(0,0);
+  Serial.println(valor);
+  
+  if(valor >= botao1 * 0.9 && valor <= botao1 * 1.1)//botao 1
+  {
+    lcd.setCursor(0,1); 
+    lcd.print(" ");
+    lcd.setCursor(0,0);
+    lcd.print(">");
+    
+    posicaoSetinha = 0;
+  }
+  else if(valor >= botao2 * 0.9 && valor <= botao2 * 1.1)
+   {
+    lcd.setCursor(0,0);
+    lcd.print(" ");
+    lcd.setCursor(0,1);  
+    lcd.print(">");
+    
+    posicaoSetinha = 1;
+ 
+   }
+  else if(valor >= botao3 * 0.9 &&valor  <= botao3 * 1.1)
+    {
+    
+    }
+  else if(valor >= botao4 * 0.9 && valor <= botao4 * 1.1)
+  {
+ 
+  }
+else if(valor >= botao5 * 0.9 && valor <= botao5 * 1.1)
+{
+   
+ if(posicaoSetinha==0)
+  {
+   
+   digitalWrite(8,LOW);
+   lcd.setCursor(0,0);
+   lcd.println(">Led A ON       ");
+   digitalWrite(9,HIGH);
+   lcd.setCursor(0,1);  
+   lcd.print(" Led B OFF   "); 
+   
+   
+  }
+    else if(posicaoSetinha==1)
+    {
+     digitalWrite(9,LOW);
+     lcd.setCursor(0,1);
+     lcd.println(">Led B ON       "); 
+     digitalWrite(8,HIGH);
+     lcd.setCursor(0,0);
+     lcd.print(" Led A OFF  ");
+      
+    }
+}
