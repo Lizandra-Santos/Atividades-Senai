@@ -1,0 +1,156 @@
+/*
+Nome do Arquivo: ATIVIDADE39
+autor: Lizandra/Thiago
+Data:21/03/2025
+Descrição:Correcao
+*/
+
+//declaracao das bibliotecas
+#include <LiquidCrystal_I2C.h>
+
+//definicoes
+
+#define Botao1 0
+#define Botao2 145 
+#define Botao3 329  
+#define Botao4 505  
+#define Botao5 741
+#define ValorSolto 1023
+#define pinLedA 9
+#define pinLedB 8
+
+//instancias de objetos
+LiquidCrystal_I2C lcd(0x27,16,2);
+
+
+  
+void setup()
+{
+  Serial.begin(9600);
+  
+  pinMode(pinLedA,OUTPUT);
+  pinMode(pinLedB,OUTPUT);
+  
+  lcd.init();  //inicia o lcd como o serial begin
+  lcd.backlight();  //liga a luz do fundo do lcd
+  lcd.setCursor(1,0);
+  lcd.print("Led A OFF");
+  lcd.setCursor(1,1);
+  lcd.print("Led B OFF");
+}
+
+void loop()
+{
+  int valorLeituraAnalogica = analogRead(A0);
+  static int ValorAnterior = 1023;
+  static bool posicao = 0;
+  static bool estadoLedA = 0;
+  static bool estadoLedB = 0;
+  static bool atualizacao=0;
+  
+  //tratamento dos botoes
+  //nenhum botao
+   if (valorLeituraAnalogica == ValorSolto)
+   {
+     //nao codar aqui
+   }
+ 
+  //BOTAO 1 PRESSIONADO
+    else if(valorLeituraAnalogica == Botao1 &&
+             ValorAnterior == ValorSolto)
+    {
+     posicao =0; 
+      atualizacao=1;
+    }
+ 
+   //BOTAO 2 PRESSIONADO
+      else if(valorLeituraAnalogica >= Botao2 * 0.9  &&
+            valorLeituraAnalogica <= Botao2 * 1.1 &&
+            ValorAnterior == ValorSolto)
+    {
+     posicao = 1;
+         atualizacao=1;
+    }
+ 
+   //BOTAO 3 PRESSIONADO
+    else if(valorLeituraAnalogica >= Botao3 * 0.9  &&
+            valorLeituraAnalogica <= Botao3 * 1.1 &&
+            ValorAnterior == ValorSolto)
+    {
+     
+    }
+   
+   //BOTAO 4 PRESSIONADO
+   else if(valorLeituraAnalogica >= Botao4 * 0.9  &&
+            valorLeituraAnalogica <= Botao4 * 1.1 &&
+            ValorAnterior == ValorSolto)
+    {
+     
+    }
+ 
+   //BOTAO 5 PRESSIONADO
+      else if(valorLeituraAnalogica >= Botao5 * 0.9  &&
+            valorLeituraAnalogica <= Botao5 * 1.1 &&
+            ValorAnterior == ValorSolto)
+    {
+         atualizacao=1;
+      if(posicao==0)
+      {
+     estadoLedA = !estadoLedA;
+      }
+       else
+       {
+     estadoLedB= !estadoLedB;
+       }
+    }
+ 
+  ValorAnterior = valorLeituraAnalogica;
+
+  //****** FIM DO TRATAMENTO DOS BOTOES ******
+ 
+ if( atualizacao==1)
+ {
+  // ***** ATUALIZA DISPLAY ******
+ if(posicao==0) 
+ {
+ lcd.setCursor(0,0);
+   lcd.print(">");
+   lcd.setCursor(0,1);
+   lcd.print(" ");
+ }
+  else
+  {
+  lcd.setCursor(0,1);
+   lcd.print(">");
+    lcd.setCursor(0,0);
+   lcd.print(" ");
+  }
+  //muda o texto do led A
+  if(estadoLedA==0)
+  {
+  lcd.setCursor(7,0);
+  lcd.print("OFF");
+  }
+  else
+  {
+   lcd.setCursor(7,0);
+  lcd.print("ON "); 
+  }
+  //Muda o texto do led B
+  if(estadoLedB==0)
+  {
+  lcd.setCursor(7,1);
+  lcd.print("OFF");
+  }
+  else
+  {
+   lcd.setCursor(7,1);
+  lcd.print("ON "); 
+  }
+  
+   //***** ATUALIZACAO DOS LED ****
+  digitalWrite(pinLedA,estadoLedA);
+  digitalWrite(pinLedB,estadoLedB);
+   atualizacao = 0;
+ }
+}
