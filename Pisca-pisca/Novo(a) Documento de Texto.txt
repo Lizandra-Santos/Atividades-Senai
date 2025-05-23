@@ -6,7 +6,7 @@ Descrição: fazer o led piscar
 */
 #define pinLedLaranja 13
 bool estadoLed =0;
-unsigned long tempoInicial =0;
+
 
 void setup()
 {

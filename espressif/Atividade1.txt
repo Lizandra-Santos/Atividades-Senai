@@ -41,6 +41,7 @@ if(EstadoAtualBotao != ultimaAcao)
       {
         contagem++;
         Serial.println(contagem);
+
       }
       //* se o botao foi solto(nivel logico HIGH),nenhuma ação por enquanto
       else
